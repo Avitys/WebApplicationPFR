@@ -10,8 +10,8 @@ using WebApplicationPFR.Domain;
 namespace WebApplicationPFR.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210610175615_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20210615081249__initial1.2")]
+    partial class _initial12
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,7 +51,7 @@ namespace WebApplicationPFR.Migrations
                         new
                         {
                             Id = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
-                            ConcurrencyStamp = "7dcaf070-8aff-4ff7-a813-c6555bffc165",
+                            ConcurrencyStamp = "c5bd3d40-db72-44ab-a58c-e682db38a769",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -150,13 +150,13 @@ namespace WebApplicationPFR.Migrations
                         {
                             Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cc2d0677-5c16-47cc-b973-87783f5aa1d0",
+                            ConcurrencyStamp = "51dd02a1-8400-4308-bff0-040f985e6e7b",
                             Email = "my@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MY@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAENVdJ+2Q+ZHITtIy7nc1VGPhgx/ypSg5uT4AlESIftr+dXKICfSHaGia6yklZ3TnnQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGTgP5sRjvPXO2TeYbaiVojMXZH/yoSgpr5KF8G05723HXvvqHrMigTQJsixiLXpjA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

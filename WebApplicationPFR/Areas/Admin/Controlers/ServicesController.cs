@@ -21,10 +21,10 @@ namespace WebApplicationPFR.Areas.Admin.Controlers
         {
             if (id != default)
             {
-                return View("Show", dataManager.Employes.GetEmployesByCodeWord(id));
+                return View("Show", dataManager.Employes.GetEmployesById(id));
             }
 
-            ViewBag.TextField = dataManager.Employes.GetEmployesByCodeWord("PageServices");
+            ViewBag.Employes = dataManager.Employes.GetEmployesById(id);
             return View(dataManager.Monitors.GetMonitorsById(id));
         }
     }

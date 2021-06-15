@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using WebApplicationPFR.Domain;
 using WebApplicationPFR.Domain.Entities;
@@ -15,7 +16,7 @@ namespace MyCompany.Domain.Repositories.EntityFramework
             this.context = context;
         }
 
-        public IQueryable<Employes> GetServiceItems()
+        public IQueryable<Employes> GetEmployes()
         {
             return context.Employes;
         }
@@ -48,30 +49,25 @@ namespace MyCompany.Domain.Repositories.EntityFramework
             return context.Employes.FirstOrDefault(x => x.printer == printer);
         }
 
-        public void DeleteEmployes(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IQueryable<Employes> GetEmployes()
-        {
-            throw new NotImplementedException();
-        }
-
         public void SaveEmployes(Employes entity)
         {
-            throw new NotImplementedException();
+            if (entity.Id == default)
+                context.Entry(entity).State = EntityState.Added;
+            else
+                context.Entry(entity).State = EntityState.Modified;
+            context.SaveChanges();
+        }
+        public void DeleteEmployes(Guid id)
+        {
+            context.Employes.Remove(new Employes() { Id = id });
+            context.SaveChanges();
+            //throw new NotImplementedException();
         }
 
-        public Employes GetEmployesByCodeWord(string codeWord)
+        /*public object GetEmployesByCodeWord(Guid id)
         {
             throw new NotImplementedException();
-        }
-
-        public object GetEmployesByCodeWord(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+        }*/
     }
 }
 

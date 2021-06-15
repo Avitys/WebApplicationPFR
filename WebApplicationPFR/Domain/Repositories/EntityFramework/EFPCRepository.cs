@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,6 +35,7 @@ namespace WebApplicationPFR.Domain.Repositories.EntityFramework
             return context.PC.FirstOrDefault(x => x.pc_inv == pc_inv);
         }
 
+
         IQueryable<PC> IPCRepositories.GetPC()
         {
             throw new NotImplementedException();
@@ -46,12 +48,18 @@ namespace WebApplicationPFR.Domain.Repositories.EntityFramework
 
         void IPCRepositories.SavePC(PC entity)
         {
-            throw new NotImplementedException();
+            if (entity.Id == default)
+                context.Entry(entity).State = EntityState.Added;
+            else
+                context.Entry(entity).State = EntityState.Modified;
+            context.SaveChanges();
         }
 
         void IPCRepositories.DeletePC(Guid id)
         {
-            throw new NotImplementedException();
+            context.PC.Remove(new PC() { Id = id });
+            context.SaveChanges();
+           // throw new NotImplementedException();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,12 +41,17 @@ namespace WebApplicationPFR.Domain.Repositories.EntityFramework
         }
         public void SavePrinters(Printers entity)
         {
-            throw new NotImplementedException();
+            if (entity.Id == default)
+                context.Entry(entity).State = EntityState.Added;
+            else
+                context.Entry(entity).State = EntityState.Modified;
+            context.SaveChanges();
         }
 
         public void DeletePrinters(Guid id)
         {
-            throw new NotImplementedException();
+            context.Printers.Remove(new Printers() { Id = id });
+            context.SaveChanges();
         }
     }
 }

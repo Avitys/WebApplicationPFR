@@ -13,9 +13,9 @@ namespace WebApplicationPFR.Domain.Repositories.Abstract
         IQueryable<Employes> GetEmployes();
 
         Employes GetEmployesById(Guid id);
-        Employes GetEmployesByCodeWord(string codeWord);
+        //Employes GetEmployesByCodeWord(string codeWord);
         void SaveEmployes(Employes entity);
         void DeleteEmployes(Guid id);
-        object GetEmployesByCodeWord(Guid id);
+        //object GetEmployesByCodeWord(Guid id);
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApplicationPFR.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class _initial12 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -238,12 +238,12 @@ namespace WebApplicationPFR.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "44546e06-8719-4ad8-b88a-f271ae9d6eab", "7dcaf070-8aff-4ff7-a813-c6555bffc165", "admin", "ADMIN" });
+                values: new object[] { "44546e06-8719-4ad8-b88a-f271ae9d6eab", "c5bd3d40-db72-44ab-a58c-e682db38a769", "admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "3b62472e-4f66-49fa-a20f-e7685b9565d8", 0, "cc2d0677-5c16-47cc-b973-87783f5aa1d0", "my@email.com", true, false, null, "MY@EMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAENVdJ+2Q+ZHITtIy7nc1VGPhgx/ypSg5uT4AlESIftr+dXKICfSHaGia6yklZ3TnnQ==", null, false, "", false, "admin" });
+                values: new object[] { "3b62472e-4f66-49fa-a20f-e7685b9565d8", 0, "51dd02a1-8400-4308-bff0-040f985e6e7b", "my@email.com", true, false, null, "MY@EMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEGTgP5sRjvPXO2TeYbaiVojMXZH/yoSgpr5KF8G05723HXvvqHrMigTQJsixiLXpjA==", null, false, "", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "Employes",
