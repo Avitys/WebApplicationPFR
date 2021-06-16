@@ -61,7 +61,7 @@ namespace WebApplicationPFR.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Data Source=&quot;(localdb)\MSSQLLocalDB&quot;;database=&quot;DataBase_PFR&quot;;integret.
+        ///   Ищет локализованную строку, похожую на Data Source=&quot;(localdb)\MSSQLLocalDB&quot;;database=&quot;DataBase_PFR&quot;;integrated security =SSPI;.
         /// </summary>
         internal static string ConnectionString {
             get {

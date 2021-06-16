@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Data.SqlClient;
+using System;
+using System.Collections.Generic;
 using WebApplicationPFR.Domain;
 using WebApplicationPFR.Models;
-using System.Data.SqlClient;
-using Microsoft.Data.SqlClient;
-using System;
-using WebApplicationPFR.Domain.Entities;
-using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+
 
 namespace WebApplicationPFR.Areas.Admin.Controlers
 {
@@ -15,47 +18,59 @@ namespace WebApplicationPFR.Areas.Admin.Controlers
         SqlCommand com = new SqlCommand();
         SqlDataReader dr;
         SqlConnection con = new SqlConnection();
-        List<Employes> employes = new List<Employes>();
-        private readonly DataManager dataManager;
-
-        public HomeController(DataManager dataManager)
+        List<DataTable> dataTables = new List<DataTable>();
+        private readonly ILogger<HomeController> _logger;
+        public HomeController(ILogger<HomeController> logger)
         {
-            this.dataManager = dataManager;
+            _logger = logger;
             con.ConnectionString = WebApplicationPFR.Properties.Resources.ConnectionString;
         }
-        public ActionResult Index()
-        {
-            return View();
-            //return View(dataManager.Employes.GetEmployesById("PageIndex"));
 
-        }
+
         private void FetchData()
         {
+            if (dataTables.Count > 0)
+            {
+                dataTables.Clear();
+            }
             try
             {
                 con.Open();
                 com.Connection = con;
-                com.CommandText = "SELECT TOP (1000) [Id],[FIO],[otdel],[Room],[mon],[pc],[printer],[PC_ID],[PCId],[Mon_ID],[MonitorsId],[Printer_ID],[PrintersId] FROM[DataBase_PFR].[dbo].[Employes]";
+                com.CommandText = "SELECT *  FROM [DataBase_PFR].[dbo].[Employes]";
                 dr = com.ExecuteReader();
                 while (dr.Read())
                 {
-                    employes.Add(new Employes(){FIO = dr["FIO"].ToString()
-                    ,otdel = dr["otdel"].ToString()
-                    //,Room = dr["Room"].ToString()
-                    ,mon = dr["Room"].ToString()
-                    ,pc = dr["Room"].ToString()
-                    ,printer = dr["Room"].ToString()
-                    //,Room = dr["Room"].ToString()
-                    //,Room = dr["Room"].ToString()
+                    dataTables.Add(new DataTable(){ Id = dr["Id"].ToString(),
+                        FIO = dr["FIO"].ToString(),
+                        otdel = dr["otdel"].ToString(),
+                        Room = dr["Room"].ToString(),
+                        mon = dr["mon"].ToString(),
+                        pc = dr["pc"].ToString(),
+                        printer = dr["printer"].ToString(),
+                        PC_ID = dr["PC_ID"].ToString(),
+                        PCId = dr["PCId"].ToString(),
+                        Mon_ID = dr["Mon_ID"].ToString(),
+                        MonitorsId = dr["MonitorsId"].ToString(),
+                        Printer_ID = dr["Printer_ID"].ToString(),
+                        PrintersId = dr["PrintersId"].ToString()
+
                     });
                 }
                 con.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
+
                 throw ex;
             }
         }
+        public ActionResult Index()
+        {
+            FetchData();
+            return View(dataTables);
+        }
+
         public ActionResult Contacts()
         {
             return View();

@@ -1,52 +1,60 @@
-﻿@model IQueryable<ServiceItem>
+﻿@*model IQueryable<Employes>*@
 @{
     string strTitle = "Панель администратора";
     ViewBag.Title = strTitle;
 
-    ViewData["Title"] = "Display Data";
-    string[] TableHeaders = new string[] { "Id"
-                                          ,"FIO"
-                                          ,"otdel"
-                                          ,"Room"
-                                          ,"mon"
-                                          ,"pc"
-                                          ,"printer"
-                                          ,"PC_ID"
-                                          ,"PCId"
-                                          ,"Mon_ID"
-                                          ,"MonitorsId"
-                                          ,"Printer_ID"
-                                          ,"PrintersId"};
+    string[] TableHeaders = new string[] { "Id" ,"Вамилия ","Отдел ","Кабинет ","Монитор ","Монитор инвентарный","Монитор серийный",
+                                            "Компьютер ","Компьютер инвентарный","Компьютер серийный",
+                                            "Принтер ","Принтер инвентарный","Принтер серийный","PC_ID",
+                                            "PC Id","Mon_ID","Monitors Id","Printer_ID","Printers Id"};
 }
 
 <div>
     <h2>@strTitle</h2>
     <div>
-        <h3>Наши услуги</h3>
-        <div class="div-box">
-            <a asp-area="Admin" asp-controller="ServiceItems" asp-action="Edit" asp-route-id="">Добавить услугу</a>
-        </div>
+        <h3>Данные по технике</h3>        
 
         <div class="table">
             <table class=" table table-bordered table-hover">
                 <thead>
                     <tr>
-                        @foreach(var head in TableHeaders)
+                        @foreach (var head in TableHeaders)
                         {
                             <th>
-                                @head 
+                                @head
                             </th>
                         }
-                        
+
                     </tr>
                 </thead>
-                <tr>
-                    <td>
+                <tbody>
+                    @{
+                        if (Model != null)
+                        {
+                            foreach (var Data in Model)
+                            {
+                                <tr>
+                                    @*<td>@Data.Id</td>*@
+                                    <td>@Data.FIO</td>
+                                    <td>@Data.otdel</td>
+                                    <td>@Data.Room</td>
+                                    <td>@Data.mon</td>
+                                    <td>@Data.pc</td>
+                                    <td>@Data.printer</td>
+                                    <td>@Data.PC_ID</td>
+                                    @*<td>@Data.PCId</td>*@
+                                    <td>@Data.Mon_ID</td>
+                                    @*<td>@Data.MonitorsId</td>*@
+                                    <td>@Data.Printer_ID</td>
+                                    @*<td>@Data.PrintersId</td>*@
 
-                    </td>
-                </tr>
+                                </tr>
+                            }
+
+                        }
+                    }
+                </tbody>
             </table>
-
         </div>
 
 
@@ -71,12 +79,14 @@
             </div>
         }*@
     </div>
+
     <div class="div-box">
         <h3>Редактировать страницы сайта</h3>
         <a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageIndex">Главная</a>
         <a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageServices">Наши услуги</a>
-        <a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageContacts">Контакты</a>
+        @*<a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageContacts">Контакты</a>*@
     </div>
+
     <div class="div-box">
         <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
             <input type="submit" value="Выйти" />
